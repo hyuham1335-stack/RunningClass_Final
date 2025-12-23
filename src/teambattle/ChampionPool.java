@@ -2,6 +2,7 @@ package teambattle;
 
 import character.Champion;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -16,5 +17,9 @@ public class ChampionPool {
 
     public Optional<Champion> findChampion(String championName) {
         return Optional.ofNullable(champions.get(championName));
+    }
+
+    public Map<String, Champion> getChampions() {
+        return champions;
     }
 }

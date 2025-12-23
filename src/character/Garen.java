@@ -34,6 +34,4 @@ public class Garen extends Champion{
         Logger.addLog(getName() + "이(가) " + target.getName() + "에게 결정타 스킬 사용");
         target.takeDamage(this, 100);
     }
-
-
 }

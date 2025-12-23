@@ -37,19 +37,21 @@ public abstract class Champion {
 
         if (trueDamage >= hp) {
             hp = 0;
-            throw new DeadChampionActionException(name + " 사망! 전투불능");
+            throw new DeadChampionActionException(name + " 사망! 전투불능", damageGiver, this);
         } else {
             hp -= trueDamage;
         }
+
+        Logger.addLog(name + " 현재 체력: " + hp);
     }
 
     // 레벨업 처리
     public void levelUp() {
-        Logger.addLog(name + " 레벨업!");
         level++;
         hp += growthHpByLevel();
         attackDamage += growthADByLevel();
         defense += growthDFByLevel();
+        Logger.addLog(name + " 레벨업! 현재 레벨: "+ level + " 현재 체력: " + hp + " AD: " + attackDamage + " DF: " + defense );
     }
 
     public abstract int growthHpByLevel();
@@ -81,5 +83,15 @@ public abstract class Champion {
 
     public int getDefense() {
         return defense;
+    }
+
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", level=" + level +
+                ", hp=" + hp +
+                ", attackDamage=" + attackDamage +
+                ", defense=" + defense +
+                '}';
     }
 }
