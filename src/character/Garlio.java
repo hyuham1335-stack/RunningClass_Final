@@ -10,8 +10,8 @@ public class Garlio extends Champion{
     private static final int fixedGrowthDF = 10;
 
     // 생성자
-    public Garlio(String name, int level, int hp, int attackDamage, int defense) {
-        super(name, level, hp, attackDamage, defense);
+    public Garlio(String name, int level, int hp, int attackDamage, int defense, int mana) {
+        super(name, level, hp, attackDamage, defense, mana);
     }
 
     // 기능
@@ -32,7 +32,8 @@ public class Garlio extends Champion{
 
     @Override
     public void useQ(Champion target) {
-        Logger.addLog(getName() + "이(가) " + target.getName() + "에게 전장의 돌풍 스킬 사용");
+        useMana(40, target);
+        Logger.addLog(getName() + "이(가) " + target.getName() + "에게 전장의 돌풍 스킬 사용 / " + getName() + " 현재 마나: " + getMana());
         target.takeDamage(this, 80);
     }
 }

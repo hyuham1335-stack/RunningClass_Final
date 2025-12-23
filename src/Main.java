@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) {
 
         ChampionPool championPool = new ChampionPool();
-        championPool.addChampion(new Garen("가렌", 1, 300, 100, 20));
-        championPool.addChampion(new Garlio("갈리오", 1, 350, 60, 30));
-        championPool.addChampion(new Rize("라이즈", 1, 250, 120, 15));
-        championPool.addChampion(new Teemo("티모", 1, 300, 140, 10));
+        championPool.addChampion(new Garen("가렌", 1, 300, 100, 20, 100));
+        championPool.addChampion(new Garlio("갈리오", 1, 350, 60, 30, 150));
+        championPool.addChampion(new Rize("라이즈", 1, 250, 120, 15, 200));
+        championPool.addChampion(new Teemo("티모", 1, 300, 140, 10, 100));
 
         Random random = new Random();
         random.setSeed(System.currentTimeMillis());

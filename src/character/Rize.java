@@ -9,8 +9,8 @@ public class Rize extends Champion {
     private static final int fixedGrowthDF = 7;
 
 
-    public Rize(String name, int level, int hp, int attackDamage, int defense) {
-        super(name, level, hp, attackDamage, defense);
+    public Rize(String name, int level, int hp, int attackDamage, int defense, int mana) {
+        super(name, level, hp, attackDamage, defense, mana);
     }
 
 
@@ -31,7 +31,8 @@ public class Rize extends Champion {
 
     @Override
     public void useQ(Champion target) {
-        Logger.addLog(getName() + "이(가) " + target.getName() + "에게 과부하 스킬 사용");
+        useMana(100, target);
+        Logger.addLog(getName() + "이(가) " + target.getName() + "에게 과부하 스킬 사용 / " + getName() + " 현재 마나: " + getMana());
         target.takeDamage(this, 120);
     }
 }

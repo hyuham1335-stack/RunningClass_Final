@@ -1,7 +1,9 @@
 package teambattle;
 
 import character.Champion;
+import execption.BattleEndException;
 import execption.DeadChampionActionException;
+import execption.ManaActionException;
 import log.Logger;
 
 public class SafeBattle {
@@ -25,7 +27,7 @@ public class SafeBattle {
                 champ2.levelUp();
 
             }
-        } catch(DeadChampionActionException e) {
+        } catch(BattleEndException e) {
             Logger.addLog(e.getMessage());
             Logger.addLog(e.getWinner().getName() + " 이(가) " + e.getLoser().getName() + " 상대로 승리하였습니다.");
         }
