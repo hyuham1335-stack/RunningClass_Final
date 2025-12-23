@@ -1,5 +1,6 @@
 package character;
 
+import execption.DeadChampionActionException;
 import log.Logger;
 
 public abstract class Champion {
@@ -29,37 +30,36 @@ public abstract class Champion {
     }
 
     // 챔피언 피해 처리
-    public void takeDamage(Champion enemy, int damage) {
+    public void takeDamage(Champion damageGiver, int damage) {
 
         int trueDamage = Math.max(damage - defense, 0);
-        Logger.addLog(enemy.getName() + "이(가) " + name + "에게 " + trueDamage + " 피해를 주었습니다");
+        Logger.addLog(damageGiver.getName() + "이(가) " + name + "에게 " + trueDamage + " 피해를 주었습니다");
 
         if (trueDamage >= hp) {
             hp = 0;
-            Logger.addLog(name + " 사망! 전투불능");
+            throw new DeadChampionActionException(name + " 사망! 전투불능");
         } else {
             hp -= trueDamage;
         }
     }
 
-    // 레벨업
+    // 레벨업 처리
     public void levelUp() {
         Logger.addLog(name + " 레벨업!");
-        statusUp();
+        level++;
+        hp += growthHpByLevel();
+        attackDamage += growthADByLevel();
+        defense += growthDFByLevel();
     }
 
-    // 레벨 업 시 캐릭터별 스탯 증가
-    public abstract void statusUp();
+    public abstract int growthHpByLevel();
+    public abstract int growthADByLevel();
+    public abstract int growthDFByLevel();
 
 
     // Q 스킬 사용
-    public void useQ(Champion target){
-        Logger.addLog(name + "이(가) " + target.getName() + "에게 Q 스킬 사용");
-        useQByChampion(target);
-    }
+    public abstract void useQ(Champion target);
 
-    // 챔피언별 Q 스킬 세분화
-    public abstract void useQByChampion(Champion target);
 
 
     // getter
